@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Window</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Basic reset for margin and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Center the chat container on the page */
+    body, html {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* background-color: #f0f0f0; */
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* Chat container styles */
+    .chat-container {
+      width: 400px;
+      height: 350px;
+      
+      padding: 20px;
+      /* background-color: #f9f9f9; */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow-y: auto;
+      /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.1); */
+      transform: skewY(7deg); /* Skewing in the opposite direction */
+      transform-origin: top center; /* Origin of the skew from the top center */
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    /* Chat header (title bar) */
+    .chat-header {
+      display: flex;
+      align-items: center;
+      background-color: #e4e6eb;
+      padding: 8px 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Buttons in the chat header */
+    .chat-header .window-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .chat-header .window-button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #ff3b30; /* Red for close */
+      cursor: pointer;
+    }
+    .chat-header .window-button.minimize {
+      background-color: #ffcc00; /* Yellow for minimize */
+    }
+    .chat-header .window-button.expand {
+      background-color: #34c759; /* Green for expand */
+    }
+
+    /* Styling for individual messages */
+    .message {
+      max-width: 80%;
+      padding: 10px 15px;
+      margin: 10px 0;
+      border-radius: 20px;
+      font-size: 14px;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    /* Styling for usernames above messages */
+    .username {
+      color: gray;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    /* Styling for messages sent by the user (right-aligned) */
+    .user-message {
+      background-color: #007bff;
+      color: white;
+      align-self: flex-end;
+    }
+
+    /* Styling for messages sent by the bot (left-aligned) */
+    .bot-message {
+      background-color: #e4e6eb;
+      color: #333;
+      align-self: flex-start;
+    }
+
+    /* A simple scrollbar styling */
+    .chat-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .chat-container::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 4px;
+    }
+
+    /* For responsive behavior */
+    @media (max-width: 500px) {
+      .chat-container {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chat-container">
+    <!-- Chat header with buttons -->
+    <div class="chat-header" style="position: fixed; left: 0px; top: 0px; width:200px;">
+      <div class="window-buttons">
+        <div class="window-button"></div> <!-- Close button -->
+        <div class="window-button minimize"></div> <!-- Minimize button -->
+        <div class="window-button expand"></div> <!-- Expand button -->
+      </div>
+    </div>
+
+    <!-- User Message with Username A -->
+    <div class="username" style="align-self: flex-end; margin-right: 200px;">User:</div>
+    <div class="message user-message">
+      
+      Hi, I need help with my account.
+    </div>
+
+    <!-- Bot Message with Username B -->
+    <div class="username">Aidin':</div>
+    <div class="message bot-message">
+      
+      Sure! I can help you with that. What seems to be the issue?
+    </div>
+  </div>
+
+</body>
+</html>

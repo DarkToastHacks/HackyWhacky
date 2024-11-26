@@ -1,0 +1,49 @@
+@import 'primeicons/primeicons.css';
+
+/* @import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+@import './base.css';
+
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+ 
+}  */
+/* #app {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 2rem;
+} */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: hidden;
+  font-family:  'Roboto';
+}
+.p-menubar .p-component .p-menubar-mobile {
+  border-radius:  50px !important;
+}
