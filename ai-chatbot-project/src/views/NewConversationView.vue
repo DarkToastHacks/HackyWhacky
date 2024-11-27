@@ -42,11 +42,12 @@
 
           for await (const chunk of stream) {
             fullResponse = chunk.trim();
-            p.innerHTML = DOMPurify.sanitize(marked.parse(fullResponse));
+            // p.innerHTML = DOMPurify.sanitize(marked.parse(fullResponse));
             this.message = fullResponse;
           }
         } catch (error) {
-          p.textContent = `Error: ${error.message}`;
+          // p.textContent = `Error: ${error.message}`;
+          this.message = "Bears may attack if approached."
         }
       },
       async updateSession() {
