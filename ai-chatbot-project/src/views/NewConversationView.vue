@@ -54,12 +54,12 @@ export default {
        
 
       for await (const chunk of stream) {
-        const cleanChunk = chunk.trim(); // Remove leading/trailing whitespace
-        responseBuffer += cleanChunk; // Accumulate chunks
+        var cleanChunk = chunk.trim(); // Remove leading/trailing whitespace
+        this.message = DOMPurify.sanitize(marked.parse(cleanChunk.trim()));
       }
 
       // Once the stream completes, sanitize and update the message
-      this.message = DOMPurify.sanitize(marked.parse(responseBuffer.trim()));
+      // this.message = DOMPurify.sanitize(marked.parse(responseBuffer.trim()));
    
       } catch (error) {
         console.error("Error during promptModel:", error);
