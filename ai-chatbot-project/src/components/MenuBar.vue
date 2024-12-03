@@ -1,7 +1,6 @@
 <template>
     <div class="card" style="border-radius: 50px;">
         <Menubar :model="items" style="border-radius: 50px;"/>
-        <Button icon="pi pi-moon" text raised rounded @click="toggleDarkMode()" style="position:fixed; top: 10px; right: 10px;" />
      </div>
 
      <div v-if="dialogVisible" class="dialog-overlay">
@@ -25,11 +24,6 @@ const router = useRouter();
 const dialogVisible = ref(false);
 const dialogTitle = ref("");
 const dialogMessage = ref("");
-
-function toggleDarkMode() {
-    document.documentElement.classList.toggle('my-app-dark');
-}
-
 const items = ref([
     {
         label: 'Home',
