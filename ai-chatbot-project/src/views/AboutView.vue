@@ -1,27 +1,148 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+    <header class="header">
+    <h2 class="title"> Learn about us! </h2>
+    <br>
+    <p> Aidin is a first aid AI-powered chat bot designed to provide accessible emergency counseling to all users. <br> Created by three medical students and two software engineers, this web app aims to make first aid fun and easy to follow. From bee stings to asthma attacks, searching up what to do in crisis can be scary and time consuming. Our goal is to streamline the process and make it digestible with a little Google magic. This app is not professional medical advice, rather intended as a first aid interactive guide with references from reputable sources such as the American Red Cross and more.
+ <br> Made by the following: </p>
+<!-- Suggestion List  -->
+<ul class="suggestion-list">
 
-  </div>
- 
+    <li class="suggestion">
+      <Card class="text">
+        <template #title>Brandon Dalla Rosa</template>
+        <template #content>
+            <p class="m-0">
+              Howdy! I'm Brandon, a software engineer who spends many a intimate moment enjoying my favorite movie Shrek.
+            </p>
+            <img src="../assets/portraitAidinBrandon.png" alt="image" class="card__img" style="height: 300px; width: 300px;">
+        </template>
+    </Card>
+    </li>
+    <li class="suggestion">
+      <Card class="text">
+        <template #title>Maggie Zawoy</template>
+        <template #content>
+            <p class="m-0">
+              Hey my name is Maggie and I like to draw, play musical instruments, and ride my bike without my helmet at exhilerating speeds.
+            </p>
+            <img src="../assets/portraitAidinMaggie.png" alt="image" class="card__img" style="height: 300px; width: 300px;">
+        </template>
+    </Card>
+    </li>
+    <li class="suggestion">
+      <Card class="text">
+        <template #title>Chance Fleeting</template>
+        <template #content>
+            <p class="m-0">
+              Hi, I'm Chance! I'm in the graduate years of my MD-PhD training and have far too many musical instruments.
+            </p>
+            <img src="../assets/portraitAidinChance.png" alt="image" class="card__img" style="height: 300px; width: 300px;">
+        </template>
+    </Card>
+    </li>
+    <li class="suggestion">
+      <Card class="text">
+        <template #title>Sally Lu</template>
+        <template #content>
+            <p class="m-0">
+              Hi my name is Sally and I'm a medical student who enjoys graphic design and web developement. I'm also obsessed with my cat Juniper!
+            </p>
+            <img src="../assets/portraitAidinSally.png" alt="image" class="card__img" style="height: 300px; width: 300px;">
+        </template>
+    </Card>
+    </li>
+    <li class="suggestion">
+      <Card class="text">
+        <template #title>Reem Larabi</template>
+        <template #content>
+            <p class="m-0">
+              My name is Reem and I'm a software engineer who loves fashion and travelling! I'm also TikTok famous ;3
+            </p>
+            <img src="../assets/portraitAidinReem.png" alt="image" class="card__img" style="height: 300px; width: 300px;">
+        </template>
+    </Card>
+    </li>
+ </ul>
+</header>
+
 </template>
 
+<script setup>
+import Card from 'primevue/card';
+
+</script>
+
 <style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+}
+
+.header, .chat-list .message, .typing-form {
+    max-width: 1500px;
+    margin: 0 auto;
+    max-height: 400vh;
+    overflow-y: auto;
+}
+
+.header :where(.title, .subtitle) {
+    font-weight: 500;
+    line-height: 3.6rem;
+}
+
+.header .title {
+    font-size: 4.0rem;
+    width: fit-content;
+    background-clip: text;
+    background: linear-gradient(to right, #60c8eb, #29a2b8, #e0c33e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header {
+    margin-top: 10vh;
+    padding: 1rem;
+    /* display: none; */
+}
+
+.suggestion-list {
+    margin-top: 9.5vh;
+    list-style: none;
     display: flex;
-    align-items: center;
-  }
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
 }
 
+.suggestion-list .suggestion {
+    background: var(--secondary-color);
+    padding: 1.25rem;
+    cursor: pointer;
+    width: 400px;
+    min-height: 500px;
+    flex-shrink: 0;
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between ;
 
-.glass{
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border:1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
+.suggestion-list .suggestion:hover {
+    background: var(--secondary-hover-color)
+}
+.suggestion-list .suggestion .text {
+    font-weight: 400;
+}
+
+/* #8be2ff, #dff6fa, #f8e27e */
+/* .container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+*/
 </style>
