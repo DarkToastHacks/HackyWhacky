@@ -217,7 +217,7 @@ const promptModel = async (text: string) => {
 const updateSession = async () => {
       try {
         session = await self.ai.languageModel.create({
-          temperature: 0.2, //decreased this
+          temperature: 0.8, //decreased this
           topK: 20,
           maxTokens: 150,   // Added this to try to make the response shorter but the repetition problem persists
         });
