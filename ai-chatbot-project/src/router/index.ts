@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LearnMoreView from '../views/LearnMoreView.vue'
-import NewConversationView from '../views/NewConversationView.vue'
+// import NewConversationView from '../views/NewConversationView.vue'
 import ChatWindowView from '../views/ChatWindowView.vue'
 
 const router = createRouter({
@@ -25,16 +25,17 @@ const router = createRouter({
       name: 'learn-more',
       component: LearnMoreView,
     },
+    // {
+    //   path: '/new-conversation/', 
+    //   name: 'new-conversation',
+    //   component: NewConversationView,
+  
+    // },
     {
-      path: '/new-conversation/:query', 
-      name: 'new-conversation',
-      component: NewConversationView,
-      props: (route) => ({ query: route.params.query }),
-    },
-    {
-      path: '/chat', 
+      path: '/chat/:query', 
       name: 'chat',
       component: ChatWindowView,
+       props: (route) => ({ query: route.params.query })
     },
   ],
 })

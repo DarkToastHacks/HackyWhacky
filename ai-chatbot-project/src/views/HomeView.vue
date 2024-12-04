@@ -7,7 +7,7 @@ import { useRouter } from 'vue-router';
 const val = ref('');
 const router = useRouter();
 const goToNewConversation = () => {
-  router.push({ name: 'new-conversation', params: { query: val.value } });
+  router.push({ name: 'chat', params: { query: val.value } });
 };
 </script>
 

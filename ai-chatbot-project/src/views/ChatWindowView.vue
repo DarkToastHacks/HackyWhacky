@@ -78,17 +78,26 @@
 </template>
 <script setup lang="ts">
 // import { PrimeIcons } from '@primevue/core/api';
-import {onMounted, ref, watch} from 'vue';
+import {computed, onMounted, ref, watch} from 'vue';
 import { nextTick } from "vue";
 import { marked } from "https://cdn.jsdelivr.net/npm/marked@13.0.3/lib/marked.esm.js";
 import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.es.mjs";
 const updateTrigger = ref(0); // int to trigger updates
+
+const props = withDefaults(
+    defineProps<{
+        query: string;
+    }>(), {
+        query: '',
+    }
+);
 
 const userMessage = ref("");
 const chatList =  ref<HTMLElement | null>(null);
 const messages = ref<{text: string; visible: boolean}[]>([]);
 let session = null;
 var currentMessage = "";
+const sendFirstQuery = ref<boolean>(false);
 
 //light or dark mode
 const isLight = ref(false);
@@ -106,6 +115,19 @@ const toggleTheme = () => {
 };
 
 const handleSubmitMessage = () => {
+    window.alert(props.query);
+    if (props.query !== undefined || props.query !== null && sendFirstQuery.value === false) {
+        const message = {
+        text: props.query,
+        visible: false,
+      };
+      messages.value.push(message);
+      userMessage.value = "";
+      sendFirstQuery.value = true;
+      addAiResponse(message.text);
+      
+      return; 
+    }
     if (!userMessage.value.trim())  return;
         
     const message = {
