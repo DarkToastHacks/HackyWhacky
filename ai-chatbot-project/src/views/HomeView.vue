@@ -9,6 +9,11 @@ const router = useRouter();
 const goToNewConversation = () => {
   router.push({ name: 'chat', params: { query: val.value } });
 };
+const checkIfEnter = (e) => {
+  if (e.keyCode === 13) {
+    goToNewConversation();
+  }
+};
 </script>
 
 <template>
@@ -22,7 +27,7 @@ const goToNewConversation = () => {
     <div class="content-section">
       <h1 style="font-size: 70px;">First Aid with AI</h1>
         <p class="description"> Introducing a web app that can answer your urgent questions with ease. Just ask our AI chatbot for tips and guidance. <br> (not professional medical advice though!)</p>
-        <input type="text" v-model="val" class="input-field" placeholder="Start typing here...">
+        <input type="text" v-model="val" class="input-field" placeholder="Start typing here..." v-on:keyup="checkIfEnter">
      
       <Button label="Let's go!" class="cute-button" @click="goToNewConversation"></Button>
   </div>
