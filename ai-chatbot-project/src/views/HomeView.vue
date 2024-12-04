@@ -182,7 +182,7 @@ body, html {
 /* Main Heading */
 h1 {
   font-size: 48px;
-  color: #212529;
+  color: var(--text-color);
   margin: 0 0 20px 0;
   font-weight: bold;
 }
@@ -190,7 +190,7 @@ h1 {
 /* Description Text */
 .description {
   font-size: 14px;
-  color: #6c757d;
+  color: var(--text-color);
   margin-bottom: 50px;
   max-width: 400px; /* Keeps text centered and neat */
 }

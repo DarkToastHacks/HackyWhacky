@@ -12,7 +12,7 @@
         <template #title>Brandon Dalla Rosa</template>
         <template #content>
             <p class="m-0">
-              Howdy! I'm Brandon, a software engineer who spends many a intimate moment enjoying my favorite movie Shrek.
+              Howdy! I'm Brandon, a software engineer who spends way too much time screaming at karaoke.
             </p>
             <img src="../assets/portraitAidinBrandon.png" alt="image" class="card__img" style="height: 300px; width: 300px;">
         </template>
@@ -80,7 +80,7 @@ import Card from 'primevue/card';
     font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
 }
 
-.header2, .chat-list .message, .typing-form {
+.header2 {
     max-width: 1500px;
     margin: 0 auto;
     max-height: 400vh;
