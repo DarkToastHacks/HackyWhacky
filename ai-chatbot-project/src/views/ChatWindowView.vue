@@ -309,7 +309,7 @@ body {
 .header {
     margin-top: 7vh;
     padding: 1rem;
-    display: none;
+    /* display: none; */
 }
 
 body.hide-header .header {
