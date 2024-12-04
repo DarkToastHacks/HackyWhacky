@@ -78,7 +78,7 @@
 </template>
 <script setup lang="ts">
 // import { PrimeIcons } from '@primevue/core/api';
-import {computed, onMounted, ref, watch} from 'vue';
+import {computed, onMounted, ref, watch, defineProps} from 'vue';
 import { nextTick } from "vue";
 import { marked } from "https://cdn.jsdelivr.net/npm/marked@13.0.3/lib/marked.esm.js";
 import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.es.mjs";
@@ -115,19 +115,6 @@ const toggleTheme = () => {
 };
 
 const handleSubmitMessage = () => {
-    window.alert(props.query);
-    if (props.query !== undefined || props.query !== null && sendFirstQuery.value === false) {
-        const message = {
-        text: props.query,
-        visible: false,
-      };
-      messages.value.push(message);
-      userMessage.value = "";
-      sendFirstQuery.value = true;
-      addAiResponse(message.text);
-      
-      return; 
-    }
     if (!userMessage.value.trim())  return;
         
     const message = {
@@ -202,7 +189,7 @@ const promptModel = async (text: string) => {
         currentMessage = "Please do not abuse my helping features.";
         return;
       }
-      prompt = "Respond to the following user input in a concise and helpful way, as if you were chatting with them over text: " + prompt + ". If the previous question is not health or injury related, please inform the user that you are only designed to answer health questions.";
+      prompt = "Respond to the following user input in a concise and helpful way, as if you were chatting with them over text: " + prompt + ". If the previous input does not include health or an injury, please inform the user that you are only designed to answer health questions.";
     //   prompt = "Respond to the following user input with helpful advice: " + prompt;
 
       let responseBuffer = ""; // Buffer to accumulate the full response
@@ -243,6 +230,12 @@ const updateSession = async () => {
 onMounted(() => {
   loadTheme();
   scrollToBottom();
+  const message = {
+        text: props.query,
+        visible: true,
+      };
+  messages.value.push(message);
+  addAiResponse(props.query);
 });
 
 watch(updateTrigger, (newVal) => {
