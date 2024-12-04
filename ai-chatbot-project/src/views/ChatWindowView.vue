@@ -1,34 +1,34 @@
 <template>
-<header class="header">
-    <h2 class="title"> Hello, there </h2>
-    <h4 class="subtitle"> Is everything okay? What's wrong?</h4>
-<!-- Suggestion List  -->
-<ul class="suggestion-list">
-    <li class="suggestion">
-        <h4 class="text">
-        What should I do if a snake bites me?</h4>
-        <span class="pi pi-pen-to-square"></span>
-    </li>
-    <li class="suggestion">
-        <h4 class="text">
-       What's the song that people sing to practice performing CPR?</h4>
-       <span class="pi pi-heart"></span>
-    </li>
-    <li class="suggestion">
-        <h4 class="text">
-        What's the difference between urgent care and the emergency room?</h4>
-        <span class="pi pi-question-circle"></span>
-    </li>
-    <li class="suggestion">
-        <h4 class="text">
-        What should I do to make my cold go away faster?</h4>
-        <span class="pi pi-sparkles"></span>
-    </li>
- </ul>
-</header>
 
 <!-- Chat List / Container -->
 <div ref="chatList" class="chat-list" >
+    <header class="header">
+        <h2 class="title"> Hello, there </h2>
+        <h4 class="subtitle"> Is everything okay? What's wrong?</h4>
+    <!-- Suggestion List  -->
+    <ul class="suggestion-list">
+        <li class="suggestion">
+            <h4 class="text">
+            What should I do if a snake bites me?</h4>
+            <span class="pi pi-pen-to-square"></span>
+        </li>
+        <li class="suggestion">
+            <h4 class="text">
+        What's the song that people sing to practice performing CPR?</h4>
+        <span class="pi pi-heart"></span>
+        </li>
+        <li class="suggestion">
+            <h4 class="text">
+            What's the difference between urgent care and the emergency room?</h4>
+            <span class="pi pi-question-circle"></span>
+        </li>
+        <li class="suggestion">
+            <h4 class="text">
+            What should I do to make my cold go away faster?</h4>
+            <span class="pi pi-sparkles"></span>
+        </li>
+    </ul>
+    </header>
     <div v-for="(message, index) in messages" :key="index"> 
         <div v-if="index % 2 === 0 "class="message outgoing">
             <div class="message-content">
