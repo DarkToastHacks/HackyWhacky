@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LearnMoreView from '../views/LearnMoreView.vue'
 import NewConversationView from '../views/NewConversationView.vue'
+import ChatWindowView from '../views/ChatWindowView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +30,11 @@ const router = createRouter({
       name: 'new-conversation',
       component: NewConversationView,
       props: (route) => ({ query: route.params.query }),
+    },
+    {
+      path: '/chat', 
+      name: 'chat',
+      component: ChatWindowView,
     },
   ],
 })

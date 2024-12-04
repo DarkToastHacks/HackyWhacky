@@ -1,7 +1,7 @@
 <template>
   <div >
     <h1> {{ props.query }} </h1>
-    <p> {{ message }}</p>
+    <div v-html="message"></div>
   </div>
 </template>
 <script setup>
@@ -39,8 +39,15 @@ export default {
         return;
       }
 
-      const prompt = this.query;
+      var prompt = this.query;
       if (!prompt) return;
+
+      if (prompt.toLowerCase().includes("ignore") && prompt.toLowerCase().includes("previous")) {
+        this.message = "Bad human";
+        return;
+      }
+      // prompt = "Respond to the following user input in a concise and helpful way, as if you were chatting with them over text: " + prompt;
+      prompt = "Respond to the following user input with helpful advice: " + prompt;
 
       let responseBuffer = ""; // Buffer to accumulate the full response
       //const uniqueChunks = new Set(); // Track unique chunks
@@ -54,12 +61,9 @@ export default {
        
 
       for await (const chunk of stream) {
-        const cleanChunk = chunk.trim(); // Remove leading/trailing whitespace
-        responseBuffer += cleanChunk; // Accumulate chunks
+        var cleanChunk = chunk.trim(); // Remove leading/trailing whitespace
+        this.message = DOMPurify.sanitize(marked.parse(cleanChunk.trim()));
       }
-
-      // Once the stream completes, sanitize and update the message
-      this.message = DOMPurify.sanitize(marked.parse(responseBuffer.trim()));
    
       } catch (error) {
         console.error("Error during promptModel:", error);
