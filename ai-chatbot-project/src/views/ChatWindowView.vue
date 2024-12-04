@@ -52,7 +52,8 @@
 
             <div v-else class="message-content">
                 <img src="../assets/temp.png" alt="Aidin Image" class="avatar">
-                <p class="text"> {{ message.text }}</p>
+                <!-- <p class="text"> {{ message.text }}</p> -->
+                <div v-html="message.text" class="text"></div>
             </div>
             <span @click="copyMessage(message.text)" class="pi pi-copy"></span>
         </div> 
@@ -79,11 +80,15 @@
 // import { PrimeIcons } from '@primevue/core/api';
 import {onMounted, ref, watch} from 'vue';
 import { nextTick } from "vue";
+import { marked } from "https://cdn.jsdelivr.net/npm/marked@13.0.3/lib/marked.esm.js";
+import DOMPurify from "https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.es.mjs";
 const updateTrigger = ref(0); // int to trigger updates
 
 const userMessage = ref("");
 const chatList =  ref<HTMLElement | null>(null);
 const messages = ref<{text: string; visible: boolean}[]>([]);
+let session = null;
+var currentMessage = "";
 
 //light or dark mode
 const isLight = ref(false);
@@ -111,22 +116,23 @@ const handleSubmitMessage = () => {
 
     userMessage.value = "";
     
-      addAiResponse();
+      addAiResponse(message.text);
     
 };
 
 
 
-const addAiResponse = () => {
+const addAiResponse = async (text: string) => {
+      await promptModel(text);
       const aiMessage = {
-        text: "", 
+        text: currentMessage, 
         visible: false,
       };
       messages.value.push(aiMessage);
+      currentMessage = "";
 
       setTimeout(() => {
         aiMessage.visible = true;
-        aiMessage.text = "uhhh so actually I--"; // TODO for B
         updateTrigger.value++; // keep this increment to trigger reactivity
         }, 500);
     };
@@ -159,6 +165,58 @@ const scrollToBottom = () => {
   }
 };
 
+const promptModel = async (text: string) => {
+    currentMessage = "Loading..."
+      if (!self.ai || !self.ai.languageModel) {
+        console.error("self.ai or languageModel is undefined");
+        currentMessage = "I'm sorry, your browser does not support cool stuff.";
+        return;
+      }
+
+      var prompt = text;
+      if (!prompt) return;
+
+      if (prompt.toLowerCase().includes("ignore") && prompt.toLowerCase().includes("previous")) {
+        currentMessage = "Please do not abuse my helping features.";
+        return;
+      }
+      prompt = "Respond to the following user input in a concise and helpful way, as if you were chatting with them over text: " + prompt;
+    //   prompt = "Respond to the following user input with helpful advice: " + prompt;
+
+      let responseBuffer = ""; // Buffer to accumulate the full response
+      //const uniqueChunks = new Set(); // Track unique chunks
+
+      try {
+        if (!session) {
+          await updateSession();
+        }
+
+        const stream = await session.promptStreaming(prompt);
+       
+
+      for await (const chunk of stream) {
+        var cleanChunk = chunk.trim(); // Remove leading/trailing whitespace
+        currentMessage = DOMPurify.sanitize(marked.parse(cleanChunk.trim()));
+      }
+   
+      } catch (error) {
+        console.error("Error during promptModel:", error);
+        currentMessage = "I'm sorry, I'm unable to help at the moment";
+      }
+    }
+
+const updateSession = async () => {
+      try {
+        session = await self.ai.languageModel.create({
+          temperature: 0.2, //decreased this
+          topK: 20,
+          maxTokens: 150,   // Added this to try to make the response shorter but the repetition problem persists
+        });
+      } catch (error) {
+        console.error("Failed to create session:", error);
+        currentMessage = "Session initialization failed.";
+      }
+    }
 
 onMounted(() => {
   loadTheme();
