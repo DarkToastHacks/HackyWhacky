@@ -1,13 +1,13 @@
 <template>
-    <header class="header">
+    <header class="header2">
     <h2 class="title"> Learn about us! </h2>
     <br>
-    <p> Aidin is a first aid AI-powered chat bot designed to provide accessible emergency counseling to all users. <br> Created by three medical students and two software engineers, this web app aims to make first aid fun and easy to follow. From bee stings to asthma attacks, searching up what to do in crisis can be scary and time consuming. Our goal is to streamline the process and make it digestible with a little Google magic. This app is not professional medical advice, rather intended as a first aid interactive guide with references from reputable sources such as the American Red Cross and more.
+    <p class="text"> Aidin is a first aid AI-powered chat bot designed to provide accessible emergency counseling to all users. <br> Created by three medical students and two software engineers, this web app aims to make first aid fun and easy to follow. From bee stings to asthma attacks, searching up what to do in crisis can be scary and time consuming. Our goal is to streamline the process and make it digestible with a little Google magic. This app is not professional medical advice, rather intended as a first aid interactive guide with references from reputable sources such as the American Red Cross and more.
  <br> Made by the following: </p>
-<!-- Suggestion List  -->
-<ul class="suggestion-list">
+<!-- Cardstock List  -->
+<ul class="cardstock-list">
 
-    <li class="suggestion">
+    <li class="cardstock">
       <Card class="text">
         <template #title>Brandon Dalla Rosa</template>
         <template #content>
@@ -18,7 +18,7 @@
         </template>
     </Card>
     </li>
-    <li class="suggestion">
+    <li class="cardstock">
       <Card class="text">
         <template #title>Maggie Zawoy</template>
         <template #content>
@@ -29,7 +29,7 @@
         </template>
     </Card>
     </li>
-    <li class="suggestion">
+    <li class="cardstock">
       <Card class="text">
         <template #title>Chance Fleeting</template>
         <template #content>
@@ -40,7 +40,7 @@
         </template>
     </Card>
     </li>
-    <li class="suggestion">
+    <li class="cardstock">
       <Card class="text">
         <template #title>Sally Lu</template>
         <template #content>
@@ -51,7 +51,7 @@
         </template>
     </Card>
     </li>
-    <li class="suggestion">
+    <li class="cardstock">
       <Card class="text">
         <template #title>Reem Larabi</template>
         <template #content>
@@ -80,19 +80,19 @@ import Card from 'primevue/card';
     font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
 }
 
-.header, .chat-list .message, .typing-form {
+.header2, .chat-list .message, .typing-form {
     max-width: 1500px;
     margin: 0 auto;
     max-height: 400vh;
     overflow-y: auto;
 }
 
-.header :where(.title, .subtitle) {
+.header2 :where(.title, .subtitle) {
     font-weight: 500;
     line-height: 3.6rem;
 }
 
-.header .title {
+.header2 .title {
     font-size: 4.0rem;
     width: fit-content;
     background-clip: text;
@@ -101,13 +101,13 @@ import Card from 'primevue/card';
     -webkit-text-fill-color: transparent;
 }
 
-.header {
+.header2 {
     margin-top: 10vh;
     padding: 1rem;
     /* display: none; */
 }
 
-.suggestion-list {
+.cardstock-list {
     margin-top: 9.5vh;
     list-style: none;
     display: flex;
@@ -116,7 +116,7 @@ import Card from 'primevue/card';
     scrollbar-width: none;
 }
 
-.suggestion-list .suggestion {
+.cardstock-list .cardstock {
     background: var(--secondary-color);
     padding: 1.25rem;
     cursor: pointer;
@@ -130,11 +130,15 @@ import Card from 'primevue/card';
     justify-content: space-between ;
 
 }
-.suggestion-list .suggestion:hover {
+.cardstock-list .cardstock:hover {
     background: var(--secondary-hover-color)
 }
-.suggestion-list .suggestion .text {
+.cardstock-list .cardstock .text {
     font-weight: 400;
+}
+
+.text {
+    color: var(--text-color);
 }
 
 /* #8be2ff, #dff6fa, #f8e27e */
