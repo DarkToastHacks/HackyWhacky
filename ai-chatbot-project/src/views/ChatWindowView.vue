@@ -180,7 +180,7 @@ const promptModel = async (text: string) => {
         currentMessage = "Please do not abuse my helping features.";
         return;
       }
-      prompt = "Respond to the following user input in a concise and helpful way, as if you were chatting with them over text: " + prompt;
+      prompt = "Respond to the following user input in a concise and helpful way, as if you were chatting with them over text: " + prompt + ". If the previous question is not health or injury related, please inform the user that you are only designed to answer health questions.";
     //   prompt = "Respond to the following user input with helpful advice: " + prompt;
 
       let responseBuffer = ""; // Buffer to accumulate the full response
